@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    form {
+      margin-bottom: 2rem;
+    }
+    form div {
+      margin-bottom: 1rem;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    form input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      color: white;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    table th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .actions button {
+      background-color: #f44336;
+    }
+    .actions button.update {
+      background-color: #008CBA;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  User Management Dashboard
+</header>
+
+<main>
+  <h2>Create New User</h2>
+  <form id="createUserForm">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" required>
+    </div>
+    <div>
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" required>
+    </div>
+    <div>
+      <label for="landmark">Landmark</label>
+      <input type="text" id="landmark" name="landmark" required>
+    </div>
+    <button type="submit">Add User</button>
+  </form>
+
+  <h2>All Users</h2>
+  <table id="usersTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Phone</th>
+        <th>Landmark</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- User rows will be populated here -->
+    </tbody>
+  </table>
+</main>
+
+<script>
+  // Example script for basic form handling (Replace with actual API calls)
+  document.getElementById('createUserForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries());
+    console.log('User created:', user);
+
+    // Append user to the table (this is mock functionality)
+    const tableBody = document.getElementById('usersTable').querySelector('tbody');
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${user.name}</td>
+      <td>${user.email}</td>
+      <td>${user.age}</td>
+      <td>${user.phone}</td>
+      <td>${user.landmark}</td>
+      <td class="actions">
+        <button class="update">Update</button>
+        <button>Delete</button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+    e.target.reset();
+  });
+</script>
+
+</body>
+</html>
