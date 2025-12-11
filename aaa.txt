@@ -1,0 +1,1568 @@
+---
+output:
+  pdf_document:
+    latex_engine: pdflatex
+
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{amsmath}
+  - \usepackage{geometry}
+  - \usepackage{tabularx}
+  - \usepackage{xcolor}
+  - \usepackage{tikz}
+  - \usetikzlibrary{calc}
+  - \usepackage{background}
+  - \usepackage{titlesec}
+  - \usepackage{booktabs}
+  - \usepackage{xcolor}
+  - \usepackage{setspace}
+  - \usepackage{titlesec}
+  - \usepackage{pdfpages}
+  - \usepackage{float}
+  - \geometry{
+      a4paper,
+      total={170mm,257mm},
+      left=20mm,
+      top=20mm,
+      }
+  - \backgroundsetup{angle=0, scale=1, vshift=-5ex,
+    contents={\tikz[overlay, remember picture]
+    \draw [rounded corners=3pt, line width=1.5pt,
+           color=black, fill=white!80, double=black!90]
+           ($(current page.north west)+(0.5cm,-0.5cm)$)
+           rectangle ($(current page.south east)+(-0.5,0.5)$);}}
+---
+
+\begin{titlepage}
+    \begin{center}
+        \textsc{\Large \textbf{\textcolor{blue}{B.M.S. COLLEGE OF ENGINEERING}}}\\[0.2cm]
+        \textsc{\large \textbf{(Autonomous College under VTU)}}\\[0.2cm]
+        \textsc{\large \textbf{Bull Temple Road, Basavangudi, Bangalore - 560019}}\\[0.5cm]
+        \includegraphics[width=0.55\textwidth]{logo.png}\\[1cm]
+        \textsc{\large  \textbf{Lab Observation}}\\[0.5cm]
+        \textsc{\large on}\\[0.5cm]
+        \textsc{\large  \textbf{Programming with R}}\\[0.60cm]
+        \textbf{Submitted by}\\[0.5cm]
+        \textbf{{Manas Malviya (1BM23CD034)}}\\[0.5cm]
+        \textit{in fulfillment of mandatory observation submission for Lab assessment}\\[0.50cm]
+        \textbf{BACHELOR OF ENGINEERING}\\[0.15cm]
+        \textit{in}\\[0.2cm]
+        \textbf{Computer Science \& Engineering (Data Science)}\\[1.2cm]
+        \textbf{Under the Guidance of}\\[0.3cm]
+        \textbf{Dr.B R Shambavi}\\[0.15cm]
+        \textbf{Department of CSE (Data Science)}, \\[0.15cm]
+        \textbf{B.M.S. College of Engineering}\\[0.4cm]
+        \textbf{2025-2026}
+    \end{center}
+\end{titlepage}
+
+\newpage
+\linespread{1.5}\selectfont
+\begin{center}
+        \textsc{\Large \textbf{\textcolor{blue}{B.M.S. COLLEGE OF ENGINEERING}}}\\[0.2cm]
+        \textsc{\normalsize \textbf{(Autonomous College under VTU)}}\\[0.2cm]
+        \textsc{\large \textbf{Bull Temple Road, Basavangudi, Bangalore - 560019}}\\[0.5cm]
+        \includegraphics[width=0.2\textwidth]{logo.png}\\[0.2cm]
+\end{center}
+
+\begin{center}
+    \LARGE \fbox{\textbf{\textsc{Laboratory Certificate}}}
+\end{center}
+\vspace{1cm}
+\noindent This is to certify that Mr./Ms. \textbf{\underline{Manas Malviya}} has satisfactorily completed the course of experiments in practical \textbf{\underline{Programming With R}} prescribed by the Visvesvaraya Technology University for $5^{th}$ Semester Bachelor of Engineering course in the laboratory of the college in the year 2025 - 2026
+\vspace{0.3cm}
+
+\vspace{1.8cm}
+
+\begin{flushleft}
+    \textbf{Head of the Department}
+    \hfill
+    \begin{minipage}{5cm}
+        \textbf{Dr.B R Shambavi} \\
+        \textbf{Staff Incharge of the Batch}
+    \end{minipage}
+\end{flushleft}
+
+\vspace{1.2cm}
+\begin{flushleft}
+    \begin{tabular}{@{}m{6cm}@{}m{10cm}@{}}
+        % Left: Marks Table
+        \begin{tabular}{|m{2cm}|m{2cm}|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Marks}} \\ \hline
+            \textbf{Maximum} & \textbf{Obtained} \\ \hline
+            & \\ % Empty rows for marks
+            \hline
+        \end{tabular}
+        & \hspace{1.5cm}
+        % Right: Candidate Information as a borderless table
+        \begin{tabular}{@{}l@{\hspace{1cm}}l@{}}
+            \textbf{Name of the Candidate:} & \underline{Manas Malviya} \\[0.2cm]
+            \textbf{Branch:} & \underline{CSE (Data Science)} \\[0.2cm]
+            \textbf{USN:} & \underline{1BM23CD034} \\
+        \end{tabular}
+    \end{tabular}
+\end{flushleft}
+
+\begin{flushleft}
+    Date: 
+\end{flushleft}
+\vspace{1cm}
+
+\begin{flushright}
+    \textbf{Signature of the Candidate} 
+\end{flushright}
+
+\newpage
+\begin{center}
+    \textbf{\Large TABLE OF CONTENTS}
+\end{center}
+
+\vspace{0.5cm}
+\scriptsize
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5} % Adjust row height
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|p{6cm}|c|c|c|c|}
+\hline
+\textbf{SI No} & \textbf{Program No} & 
+\textbf{\begin{tabular}[c]{@{}c@{}}Date \\ of \\ Execution\end{tabular}} & 
+\textbf{Marks} & 
+\textbf{\begin{tabular}[c]{@{}c@{}}Faculty \\ In-Charge \\ Sign\end{tabular}} & 
+\textbf{Page No} \\ \hline
+
+1 & Program-1 & 20-08-2025 &  &  & 3--4 \\ \hline
+2 & Program-2 & 20-08-2025 &  &  & 5--13  \\ \hline
+3 & Program-3 & 02-09-2025 &  &  & 14--20 \\ \hline
+4 & Program-4 & 09-09-2025 &  &  & 21--29 \\ \hline
+5 & Program-5 & 16-09-2025 &  &  & 30--37  \\ \hline
+6 & Program-6 & 23-09-2025 &  &  & 38--42 \\ \hline
+7 & Program-7 & 14-10-2025 &  &  & 43--52 \\ \hline
+8 & Program-8 & 28-10-2025 &  &  & 53--60 \\ \hline
+9 & Program-9 & 28-10-2025 &  &  & 61--82 \\ \hline
+10 & Program-10 & 29-10-2025 &  &  & 83--87  \\ \hline
+
+\end{tabular}%
+}
+\end{table}
+
+\normalsize
+
+
+\newpage
+\section*{
+  \centering Program - 1 \\[1em]
+  \hfill 20/08/25
+}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Arithmetic Operations, Variable Assignment and Conditional Statements
+
+## Advanced triangle computation with error handling
+
+## Function to check if the inputs form a valid triangle using the triangle inequality theorem
+```{r}
+isValidTriangle <- function(a, b, c){
+  return((a + b > c) & (b + c > a) & (a + c > b))
+}
+```
+
+## Function to check the type of triangle
+```{r}
+triangleType <- function(a, b, c){
+  if (a == b && b == c){
+    return("Equilateral")
+  }
+  else if (a == b || b == c || a == c ){
+    return("Isosceles")
+  }
+  else{
+    return("Scalene")
+  }
+}
+```
+
+## Function to calculate the area using Heron 's formula
+```{r}
+triangleArea <- function(a, b, c){
+  s = (a + b + c) / 2
+  area <- sqrt (s * (s - a) * (s - b) * (s - c))
+  return(area)
+}
+```
+
+## Function to validate input (ensure it is a positive number)
+```{r}
+validateInput <- function(x){
+  if (!is.numeric(x) || x <= 0){
+      stop("Error: Input must be a positive number.")
+  }
+  return(TRUE)
+}
+```
+
+## Main code block
+```{r}
+cat("Enter the lengths of the sides of the triangle: \n")
+a <- as.numeric(readline(prompt = "Side a: \n"))
+b <- as.numeric(readline(prompt = "Side b: \n"))
+c <- as.numeric(readline(prompt = "Side c: \n"))
+```
+
+## Input Validation
+```{r}
+tryCatch({
+  validateInput(a)
+  validateInput(b)
+  validateInput(c)
+  if (!isValidTriangle(a, b, c)){
+    stop("Error: The given sides do not form a valid triangle.")
+  }
+  cat("The type of triangle is: ", triangleType(a, b, c))
+  cat("\nThe Area of the triangle is: ", triangleArea(a, b, c))
+}, error = function(e){
+  cat(e$message, "\n")
+})
+
+```
+
+\newpage
+\section*{
+  \centering Program - 2 \\[1em]
+  \hfill 20/08/25
+}
+
+# Creating and Manipulating Data Structures
+
+## Data structure manipulations in R
+
+## 1. Create a vector of random numbers and apply operations such as sorting and searching
+```{r}
+set.seed(42)
+randomVector <- runif(20, min = 1, max = 100)
+cat("Original random vector:\n")
+head(randomVector, 8)
+```
+
+## Sort the vector
+```{r}
+cat("Sorted vector:\n")
+head(sort(randomVector), 8)
+```
+
+## Search for a specific value ( check if a number is present )
+```{r}
+searchValue <- 50
+isValuePresent <- any(randomVector == searchValue)
+cat("Is", searchValue, "present in the vector? ", isValuePresent, "\n")
+```
+
+## Find values in the vector greater than 60
+```{r}
+cat("Values greater than 60:\n")
+head(randomVector[randomVector > 60], 8)
+```
+
+## 2. Convert the vector into a matrix and perform matrix multiplication
+```{r}
+matrixFromVector <- matrix(randomVector, nrow = 4, ncol = 5)
+cat("Matrix from vector:\n")
+print(matrixFromVector)
+```
+
+## Perform matrix multiplication (matrix with its transpose)
+```{r}
+matrixTranspose <- t(matrixFromVector)
+matrixMultiplicationResult <- matrixFromVector %*% matrixTranspose
+cat("Matrix multiplication result:\n")
+print(matrixMultiplicationResult)
+```
+
+## Element - wise matrix multiplication (Hadamard product)
+```{r}
+elementWiseMultiplicationResult <- matrixFromVector * matrixFromVector
+cat("Element wise matrix multiplication result:\n")
+print(elementWiseMultiplicationResult)
+```
+
+## 3. Create a list containing different types of elements and perform subsetting
+```{r}
+myList <- list(
+  numbers = randomVector,
+  characters = c("A", "B", "C", "D"),
+  logicalValues = c(TRUE, FALSE, TRUE),
+  matrix = matrixFromVector
+)
+cat("List:\n")
+print(myList)
+```
+
+## Subsetting the list (extracting numeric and logical parts)
+```{r}
+subsetNumeric <- myList$numbers
+cat("Subset (numeric part of the list):\n")
+head(subsetNumeric, 8)
+cat("Subset (logical part of the list):\n", myList$logicalValues, "\n")
+```
+
+## Modify elements in the list (replace the second character with "Z")
+```{r}
+myList$characters[2] <- "Z"
+cat("Modified list of characters:\n", myList$characters, "\n")
+```
+
+## Apply a function to the numeric part of the list (e.g., calculate the square of the numbers)
+```{r}
+squaredNumbers <- myList$numbers^2
+cat("Squared numbers:\n")
+head(squaredNumbers, 8)
+```
+
+## 4. Create a data frame, apply filtering based on multiple conditions and calculate summary statistics
+## Create a data frame
+```{r}
+df <- data.frame(
+  ID = 1:20,
+  Age = sample (18:65, 20, replace = TRUE),
+  Score = runif(20, min = 50, max = 100),
+  Passed = sample(c(TRUE, FALSE), 20, replace = TRUE)
+)
+cat("Data frame:\n")
+print(df)
+```
+
+## Filter the data frame (rows where Age > 30 and Score > 70)
+```{r}
+filtered_df <- subset(df, Age > 30 & Score > 70)
+cat("Filtered data frame (Age > 30 and Score > 70) :\n")
+print(filtered_df)
+```
+
+## Calculate mean, sum and variance of numerical columns (Age and Score)
+```{r}
+meanAge <- mean(df$Age)
+sumAge <- sum(df$Age)
+varAge <- var(df$Age)
+cat("Summary statistics for Age column:\n")
+cat("Mean Age:", meanAge, "\n")
+cat("Sum of Age", sumAge, "\n")
+cat("Variance of Age", varAge, "\n")
+
+cat("Summary statistics for Score column:\n")
+cat("Mean Score:", mean(df$Score), "\n")
+cat("Sum of Score", sum(df$Score), "\n")
+cat("Variance of Score", var(df$Score), "\n")
+```
+
+## 5. Handling missing values in the data frame
+
+
+## Introduce some NA values in the Score column
+```{r}
+df$Score[sample(1:20, 5)] <- NA
+cat(" Data frame with missing values :\n")
+print (df)
+```
+
+## Replace NA values with the mean of the Score column
+```{r}
+df$Score[is.na(df$Score)] <- mean(df$Score, na.rm = TRUE)
+cat("Data frame after imputation of missing values :\n")
+print(df)
+```
+
+## Grouping the data by Passed status and calculating group-wise statistics
+```{r}
+library(dplyr)
+grouped_stats <- df %>%
+  group_by( Passed ) %>%
+  summarise(
+    mean_score = mean(Score, na.rm = TRUE),
+    mean_age = mean(Age)
+  )
+cat("Grouped statistics by Passed status :\n")
+print(grouped_stats)
+```
+
+\newpage
+\section*{
+  \centering Program - 3 \\[1em]
+  \hfill 02/09/25
+}
+
+# Basic Statistical Operations on Open-Source Datasets
+
+## Import the libraries
+```{r}
+library(dplyr)
+library(ggplot2)
+library(moments)
+library(palmerpenguins)
+```
+
+## Load the data of iris and palmer penguins
+```{r}
+data(iris)
+data(penguins)
+```
+
+## Function for calculating mode
+```{r}
+calcMode <- function(x){
+  return(as.numeric(names(sort(table(x), decreasing = TRUE))[1]))
+}
+```
+
+## Statistical analysis:
+```{r}
+print("Iris Dataset Analysis:")
+# Mean
+irisMean <- sapply(iris[, 1:4], mean, na.rm = TRUE)
+print("Mean of the Iris dataset:")
+print(irisMean)
+# Median
+irisMedian <- sapply(iris[, 1:4], median, na.rm = TRUE)
+print("Median of the Iris dataset:")
+print(irisMedian)
+# Mode
+irisMode <- sapply(iris[, 1:4], calcMode)
+print("Mode of the Iris dataset:")
+print(irisMode)
+# Variance
+irisVariance <- sapply(iris[, 1:4], var, na.rm = TRUE)
+print("Variance of the Iris dataset:")
+print(irisVariance)
+# Standard Deviation
+iris_sd <- sapply(iris[, 1:4], sd, na.rm = TRUE)
+print("Standard Deviation of the Iris dataset:")
+print(iris_sd)
+# Skewness
+irisSkewness <- sapply(iris[, 1:4], skewness, na.rm = TRUE)
+print("Skewness of the Iris dataset:")
+print(irisSkewness)
+# Kurtosis
+irisKurtosis <- sapply(iris[, 1:4], kurtosis, na.rm = TRUE)
+print("Kurtosis of the Iris dataset:")
+print(irisKurtosis)
+```
+
+## Hypothesis testing between (t-test) between sepal length of Setosa and Versicolor
+```{r}
+setosa <- subset(iris, Species == "setosa")$Sepal.Length
+versicolor <- subset(iris, Species == "versicolor")$Sepal.Length
+t_test <- t.test(setosa, versicolor)
+print(t_test)
+```
+
+## Visualization of Iris Dataset
+## Histogram for Sepal.Length
+```{r}
+ggplot(iris, aes(x = Sepal.Length)) + 
+  geom_histogram(binwidth = 0.3, fill = "blue", color = "black") + 
+  ggtitle("Histogram of Sepal Length in Iris Dataset")
+```
+
+## Boxplot for sepal length across species
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_boxplot() + 
+  ggtitle("Boxplot of Sepal Length by Species in Iris Dataset")
+```
+
+# Statistical analysis on Palmer Penguins Dataset
+```{r}
+print("Palmer Penguins Dataset Analysis")
+# Remove rows with missing values
+penguinsClean <- na.omit(penguins)
+# Mean
+penguinsMean <- sapply(penguinsClean[, 3:6], mean, na.rm = TRUE)
+print("Mean of Palmer Penguins dataset: ")
+print(penguinsMean)
+# Median
+penguinsMedian <- sapply(penguinsClean[, 3:6], median, na.rm = TRUE)
+print("Median of Palmer Penguins dataset: ")
+print(penguinsMedian)
+# Mode
+penguinsMode <- sapply(penguinsClean[, 3:6], calcMode)
+print("Mode of Palmer Penguins dataset: ")
+print(penguinsMode)
+# Variance
+penguinsVar <- sapply(penguinsClean[, 3:6], var, na.rm = TRUE)
+print("Variance of Palmer Penguins dataset: ")
+print(penguinsVar)
+# Standard Deviation
+penguins_sd <- sapply(penguinsClean[, 3:6], sd, na.rm = TRUE)
+print("standard Deviation of Palmer Penguins dataset: ")
+print(penguins_sd)
+# Skewness
+penguinsSkewness <- sapply(penguinsClean[, 3:6], skewness, na.rm = TRUE)
+print("Skewness of Palmer Penguins dataset: ")
+print(penguinsSkewness)
+# Kurtosis
+penguinsKurtosis <- sapply(penguinsClean[, 3:6], kurtosis, na.rm = TRUE)
+print("Kurtosis of Palmer Penguins dataset: ")
+print(penguinsKurtosis)
+```
+
+## Hypothesis Testing between flipper length mm of Adelie and Gentoo species
+```{r}
+adelie <- subset(penguinsClean, species == "Adelie")$flipper_length_mm
+gentoo <- subset(penguinsClean, species == "Gentoo")$flipper_length_mm
+t_test_penguins <- t.test(adelie, gentoo)
+print(t_test_penguins)
+```
+
+## Visualization of Palmer Penguins Dataset
+## Histogram for flipper length mm
+```{r}
+ggplot(penguinsClean, aes(x = flipper_length_mm)) + 
+  geom_histogram(binwidth = 3, fill = "green", color = "black") +
+  ggtitle("Histogram of Flipper Length in Palmer Penguins Dataset")
+```
+
+## Boxplot for flipper length mm across Species
+```{r}
+ggplot(penguinsClean, aes(x = species, y = flipper_length_mm, fill = species)) + 
+  geom_boxplot() +
+  ggtitle("Boxplot of Flipper Length by Species in Palmer Penguins Dataset")
+```
+
+
+\newpage
+\section*{
+  \centering Program - 4 \\[1em]
+  \hfill 09/09/25
+}
+# 4a. Data Import, Cleaning, and Export with Titanic Dataset
+## Loading Libraries
+```{r}
+library (tidyverse)
+library (titanic)
+library (dplyr)
+library (caret)
+library (ggcorrplot)
+```
+
+## Import titanic data
+```{r}
+data <- titanic::titanic_train
+```
+
+## Handle missing data
+## Replacing missing 'Age' data with the median of the 'Age' data.
+```{r}
+data$Age[is.na(data$Age)] <- median(data$Age, na.rm = TRUE)
+```
+
+## Replacing missing embarked data with the mode of the 'Embarked' data.
+```{r}
+mode_embarked <- names(sort(table(data$Embarked), decreasing = TRUE))[1]
+data$Embarked[is.na(data$Embarked)] <- mode_embarked
+```
+
+## Remove outliers using z-scores
+Taking threshold as 3 (removes data with z-scores greater than 3 or less than -3)
+```{r}
+numeric_columns <- sapply(data, is.numeric)
+z_scores <- as.data.frame(scale(data[, numeric_columns]))
+outlier_condition <- apply(z_scores, 1, function(row) any(abs(row) > 3))
+data_clean <- data[!outlier_condition, ]
+```
+
+## Summarize the dataset before and after cleaning
+```{r}
+summary_before <- summary(titanic::titanic_train)
+summary_after <- summary(data_clean)
+correlation_matrix <- cor(data_clean[, numeric_columns], use = "complete.obs")
+```
+
+## Export the cleaned data to a new CSV file
+```{r}
+write.csv(data_clean, "cleaned_titanic_data.csv", row.names = FALSE)
+```
+
+## Display summaries
+```{r}
+print("Summary before cleaning:")
+print(summary_before)
+print("Summary after cleaning:")
+print(summary_after)
+print("Correlation Matrix")
+print(correlation_matrix)
+```
+
+## Plot the correlation matrix
+```{r}
+ggcorrplot(correlation_matrix, method = "circle", lab = TRUE, 
+           title = "Correlation Matrix of Titanic Dataset")
+```
+
+# 4b. Data Import, Cleaning, and Export with Adult Income Dataset
+
+## Import Adult Income dataset
+```{r}
+data <- read.csv("adult.data", header = FALSE)
+# Assign column names
+colnames(data) <- c('age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital_status',
+                    'occupation', 'relationship', 'race', 'sex', 'capital_gain', 'capital_loss',
+                    'hours_per_week', 'native_country', 'income')
+```
+
+## Handle missing data
+```{r}
+# Replace missing '?' values with NA
+data[data == '?'] <- NA
+# Replace missing values in categorical columns with mode
+replace_mode <- function(x){
+  mode_value <- names(sort(table(x), decreasing = TRUE))[1]
+  x[is.na(x)] <- mode_value
+  return(x)
+}
+data <- data %>%
+  mutate_if(is.character, replace_mode)
+# Replace missing numeric values with median
+data <- data %>%
+  mutate_if(is.numeric, ~ifelse(is.na(.), median(., na.rm = TRUE), .))
+```
+
+## Remove outliers using z-scores
+```{r}
+remove_outliers <- function(x){
+  z_scores <- scale(x)
+  x[abs(z_scores) <= 3]
+}
+numeric_columns <- sapply(data, is.numeric)
+# Apply z-score outlier removal to numeric columns
+data_clean <- data %>%
+  filter(!apply(as.data.frame(scale(data[, numeric_columns])), 1, function(row) any(abs(row) > 3)))
+```
+
+## Summarize the dataset before and after cleaning
+```{r}
+summary_before <- summary(read.csv("adult.data", header = FALSE))
+summary_after <- summary(data_clean)
+correlation_matrix <- cor(data_clean[, numeric_columns], use = "complete.obs")
+```
+
+## Export the cleaned data to a new CSV file
+```{r}
+write.csv(data_clean, "cleaned_adult_income_data.csv", row.names = FALSE)
+```
+
+## Display summaries
+```{r}
+print("Summary before cleaning:")
+print(summary_before)
+print("Summary after cleaning:")
+print(summary_after)
+print("Correlation Matrix")
+print(correlation_matrix)
+```
+
+## Plot the correlation matrix
+```{r}
+ggcorrplot(correlation_matrix, method = "circle", lab = TRUE, 
+           title = "Correlation Matrix of Adult Income Dataset")
+```
+
+\newpage
+\section*{
+  \centering Program - 5 \\[1em]
+  \hfill 16/09/25
+}
+# Advanced Data Manipulation with dplyr and Complex Grouping
+
+## Load necessary libraries
+
+```{r}
+library(dplyr)
+library(nycflights13)
+library(ggplot2)
+library(zoo)
+```
+
+## Preview the Star Wars dataset
+```{r}
+data("starwars")
+head(starwars)
+```
+
+
+## Task 1: Select Specific Columns, Filter Rows, and Arrange Data
+### Selecting specific columns (name, species, height, mass),
+### Filtering out missing species, and arranging by height in descending order
+```{r}
+starwars_filtered <- starwars %>%
+  select(name, species, height, mass) %>% 
+  filter(!is.na(species) & !is.na(height) & height > 100) %>% 
+  arrange(desc(height))
+```
+
+
+### Display the filtered data
+```{r}
+head(starwars_filtered)
+```
+
+
+### Plotting the filtered data
+```{r}
+ggplot(starwars_filtered, aes(x = reorder(name, -height), y = height, fill = species)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(title = "Height of Star Wars Characters", x = "Character", y = "Height (cm)") +
+  theme_minimal()
+```
+
+
+## Task 2: Group Data by Species and Summarize
+### Grouping by species, calculating average height and mass, and counting observations
+```{r}
+species_summary <- starwars %>%
+  group_by(species) %>%
+  summarize(
+    avg_height = mean(height, na.rm = TRUE),
+    avg_mass = mean(mass, na.rm = TRUE),
+    count = n()
+  ) %>%
+  arrange(desc(count))
+```
+
+
+### Display the summary
+```{r}
+head(species_summary)
+```
+
+
+### Plotting average height and mass by species
+```{r}
+ggplot(species_summary, aes(x = reorder(species, -avg_height), y = avg_height, fill = species)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(title = "Average Height by Species", x = "Species", y = "Average Height (cm)") +
+  theme_minimal()
+
+```
+
+## Task 3: Create a New Column Using mutate()
+### Adding a new column that classifies characters based on height
+```{r}
+starwars_classified <- starwars %>%
+  mutate(height_category = ifelse(height > 180, "Tall", "Short"))
+```
+
+
+### Preview the new column
+```{r}
+head(starwars_classified)
+```
+
+### Plotting height category distribution
+```{r}
+ggplot(starwars_classified, aes(x = height_category, fill = height_category)) +
+  geom_bar() +
+  labs(title = "Distribution of Height Categories", x = "Height Category", y = "Count") +
+  theme_minimal()
+```
+
+## Task 4: Join Two Data Frames Using Inner and Outer Joins
+### Using the NYC Flights dataset for demonstration (replace with your data if using a different dataset)
+```{r}
+data("flights")  # Load the flights dataset
+data("airlines")  # Load the airlines dataset
+```
+
+### Inner join: Merging flights with airlines on the common column 'carrier'
+```{r}
+
+flights_inner_join <- flights %>%
+    inner_join(airlines, by = "carrier")
+```
+
+### Outer join: Performing a full join on flights and airlines
+```{r}
+flights_outer_join <- flights %>%
+  full_join(airlines, by = "carrier")
+```
+
+### Display the joined data
+```{r}
+head(flights_inner_join)
+head(flights_outer_join)
+```
+
+## Task 5: Compute Rolling Averages and Cumulative Sums
+### Calculating a 5-period rolling average of flight arrival delay and cumulative sum
+```{r}
+flights_rolling <- flights %>%
+  arrange(year, month, day) %>%
+  mutate(
+    # 5-period rolling average
+    rolling_avg_delay = zoo::rollmean(arr_delay, 5, fill = NA),
+    # Replace NA with 0 in cumulative sum
+    cumulative_delay = replace(cumsum(arr_delay), is.na(arr_delay), 0)  
+  )
+```
+
+### Display the transformed data
+```{r}
+head(flights_rolling)
+```
+
+### Plotting Rolling Average and Cumulative Delay
+```{r}
+ggplot(flights_rolling, aes(x = day)) +
+  geom_line(aes(y = rolling_avg_delay, color = "Rolling Average Delay")) +
+  geom_line(aes(y = cumulative_delay / 1000, color = "Cumulative Delay (x1000)")) +
+  labs(title = "Rolling Average and Cumulative Delay of Flights",
+       x = "Day of the Month", y = "Delay (minutes)") +
+  scale_color_manual(values = c("Rolling Average Delay" = "blue", 
+                                "Cumulative Delay (x1000)" = "red")) +
+  theme_minimal()
+```
+
+\newpage
+\section*{
+  \centering Program - 6 \\[1em]
+  \hfill 23/09/25
+}
+# Data Visualization with ggplot2 and Customizations
+## Loading libraries
+```{r}
+library(ggplot2)
+library(reshape2)
+library(dplyr)
+```
+
+## Task 1: Scatter Plot with Regression Line and Confidence Intervals
+### Using the mpg dataset
+```{r}
+data(mpg)
+```
+
+### Creating a scatter plot with regression line and confidence intervals
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) + geom_point() + 
+  geom_smooth(method = "lm",linetype = "dashed", color = "black") + 
+  labs(title = "Scatter Plot of Engine Displacement vs Highway MPG with Regression Line",
+       x = "Engine Displacement (L)", y = "Highway Miles per Gallon", color = "Vehicle Class") + 
+  theme_bw() + theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"), 
+                     axis.title = element_text(size = 14), legend.position = "bottom")
+```
+
+## Task 2: Multi-panel Plot using Faceting
+### Creating faceted scatter plots by vehicle class with enhanced aesthetics
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) + geom_point(color = "darkgreen", size = 2) + 
+  facet_wrap(~class, ncol = 3) + labs(title = "Faceted Scatter Plot by Vehicle Class", 
+  x = "Engine Displacement (L)", y = "Highway Miles per Gallon") + 
+  theme_minimal() + theme(strip.text = element_text(size = 12, face = "italic"), 
+                          plot.title = element_text(hjust = 0.5, size = 16))
+```
+
+## Task 3: Heatmap of Correlation Matrix
+### Using the diamonds dataset for numeric columns
+```{r}
+data("diamonds") 
+```
+### Calculate the correlation matrix for numeric columns
+```{r}
+cor_matrix <- cor(diamonds[, sapply(diamonds, is.numeric)], use = "complete.obs") 
+```
+### Convert the correlation matrix to a tidy format using melt
+```{r}
+cor_data <- reshape2::melt(cor_matrix) 
+```
+### Create a heatmap with enhanced color scale and labels
+```{r}
+ggplot(cor_data, aes(Var1, Var2, fill = value)) + geom_tile(color = "white") + 
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", midpoint = 0, 
+                       limit = c(-1, 1), space = "Lab", name = "Correlation") + 
+  labs(title = "Heatmap of Correlation Matrix for Diamonds Dataset",
+       x = "Variables", y = "Variables") + 
+  theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12), 
+  axis.text.y = element_text(size = 12), plot.title = element_text(hjust = 0.5, size = 16))
+```
+
+## Task 4: Customize Plot Aesthetics
+### Enhancing scatter plot with custom themes and color palettes
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) + geom_point(size = 3, shape = 21, 
+  fill = "lightblue", alpha = 0.8) + theme_light() + scale_color_brewer(palette = "Set2") + 
+  labs(title = "Customized Scatter Plot with Aesthetic Enhancements", 
+       x = "Engine Displacement (L)", y = "Highway Miles per Gallon", color = "Class") + 
+  theme(plot.title = element_text(face = "bold", size = 18), 
+        axis.title.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14), 
+        legend.background = element_rect(fill = "gray90"))
+```
+
+## Task 5: Annotate Plots and Save as Image Files
+### Adding annotations and saving the plot
+```{r}
+annotated_plot <- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point(color = "purple", size = 3) + 
+  annotate("text", x = 4, y = 40, label = "High Efficiency Zone", color = "red", size = 5, 
+           fontface = "bold", angle = 15) + annotate("rect", xmin = 2, xmax = 4, ymin = 30, 
+           ymax = 45, alpha = 0.2, fill = "yellow", color = "orange") + 
+  labs(title = "Annotated Scatter Plot with Highlighted Zone", x = "Engine Displacement (L)", 
+       y = "Highway Miles per Gallon") + 
+  theme_classic() + theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Save the annotated plot as an image file
+```{r}
+ggsave("annotated_scatter_plot_expanded.png", annotated_plot)
+```
+## Saved Image
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("annotated_scatter_plot_expanded.png")
+```
+
+
+\newpage
+\section*{
+  \centering Program - 7 \\[1em]
+  \hfill 14/10/25
+}# Linear and Multiple Regression Analysis with Interaction Terms
+
+## Load required libraries
+
+```{r}
+library(MASS)     # For the Boston dataset
+library(ggplot2)  # For diagnostic plots
+library(caret)    # For cross-validation
+library(car)      # For residual plots
+library(pROC)     # For ROC curve analysis
+library(dplyr)    # For data manipulation
+library(corrplot) # For correlation matrix visualization
+```
+
+## Load the Boston Housing dataset
+```{r}
+data("Boston")
+head(Boston)
+```
+
+## 1. Preprocessing
+```{r}
+sum(is.na(Boston))
+summary(Boston)
+boxplot(Boston$medv, main = "Boxplot of Median Value of Homes (medv)")
+Boston <- Boston %>% filter(medv < 50)
+```
+
+## 2. Feature Selection
+## Calculate correlation matrix
+```{r}
+cor_matrix <- cor(Boston)
+corrplot(cor_matrix, method = "circle")
+```
+
+## High correlation observed between 'medv' and 'lstat', 'rm'
+## We will use 'lstat' and 'rm' as predictors based on this analysis.
+
+
+## 3. Fit a Simple Linear Regression Model
+## Simple Linear Regression with 'lstat' as predictor
+```{r}
+simple_model <- lm(medv ~ lstat, data = Boston)
+summary(simple_model)
+```
+## Interpretation:
+## - The negative coefficient for 'lstat' suggests that higher 'lstat' values
+##   (higher percentage of lower status population) are associated with lower 'medv' (median home value).
+## - The p-value (< 0.05) indicates that the relationship is statistically significant.
+
+## 4. Multiple Linear Regression with Interaction Terms
+## Multiple Linear Regression including 'rm' and interaction between 'lstat' and 'rm'
+```{r}
+multiple_model <- lm(medv ~ lstat * rm, data = Boston)
+summary(multiple_model)
+```
+## Interpretation:
+## - Significant coefficients for 'lstat', 'rm', and the interaction term ('lstat:rm').
+## - Indicates that the relationship between 'lstat' and 'medv' depends on the value of 'rm'.
+## - The adjusted R^2 has improved, suggesting a better fit compared to the simple model.
+
+
+## 5. Model Performance Evaluation
+```{r}
+adjusted_R2 <- summary(multiple_model)$adj.r.squared
+AIC_value <- AIC(multiple_model)
+BIC_value <- BIC(multiple_model)
+
+cat("Adjusted R^2:", adjusted_R2, "\n")
+cat("AIC:", AIC_value, "\n")
+cat("BIC:", BIC_value, "\n")
+```
+
+## 6. Model Diagnostics: Residual Analysis
+
+## Residual vs Fitted plot
+```{r}
+plot(multiple_model, which = 1)
+plot(multiple_model, which = 2, main = "Normal Q-Q Plot")
+```
+
+## Interpretation:
+## - The residuals should show a random scatter around zero in the Residuals vs Fitted plot.
+## - The Q-Q plot should follow a straight line if the residuals are normally distributed.
+
+## 7. Cross-Validation for Model Accuracy
+```{r}
+set.seed(123)
+train_control <- trainControl(method = "cv", number = 10)
+cv_model <- train(medv ~ lstat * rm, data = Boston, method = "lm", trControl = train_control)
+print(cv_model)
+```
+## Interpretation:
+## - Cross-validated RMSE provides an estimate of prediction error.
+## - Lower RMSE indicates better model performance.
+
+## 8. ROC Curve Analysis (Classification Approach)
+```{r}
+Boston$medv_class <- ifelse(Boston$medv >= 25, 1, 0)
+logistic_model <- glm(medv_class ~ lstat * rm, data = Boston, family = "binomial")
+summary(logistic_model)
+pred_probs <- predict(logistic_model, type = "response")
+roc_curve <- roc(Boston$medv_class, pred_probs)
+
+# Plot ROC Curve
+plot(roc_curve, main = "ROC Curve for Logistic Regression Model", col = "blue")
+abline(a = 0, b = 1, lty = 2, col = "red") # Diagonal line for reference
+cat("AUC:", auc(roc_curve), "\n")
+```
+## Interpretation:
+## - The ROC curve evaluates the trade-off between sensitivity and specificity.
+## - The Area Under the Curve (AUC) indicates the model's discriminatory ability (AUC closer to 1 is better).
+
+\newpage
+\section*{
+  \centering Program - 8 \\[1em]
+  \hfill 28/10/25
+}
+# K-Means Clustering and PCA for Dimensionality Reduction
+## Load required libraries
+```{r}
+library(rattle)
+library(ggplot2)
+library(cluster)
+library(factoextra)
+
+```
+
+## Normalize function
+```{r}
+normalize <- function(data) {
+  return((data - min(data)) / (max(data) - min(data)))
+}
+```
+
+
+## Wine Dataset
+## Load and normalize data
+```{r}
+wine <- wine
+wine_data <- wine[, -1]  # Remove the class label
+wine_norm <- as.data.frame(lapply(wine_data, normalize))
+```
+
+
+## Apply PCA
+```{r}
+wine_pca <- prcomp(wine_norm, scale. = TRUE)
+summary(wine_pca)
+```
+
+
+## Reduce to top 2 principal components
+```{r}
+wine_pca_data <- as.data.frame(wine_pca$x[, 1:2])
+```
+
+
+## Determine optimal number of clusters (Elbow Method)
+```{r}
+elbow_wine <- fviz_nbclust(wine_pca_data, kmeans, method = "wss")
+print(elbow_wine)
+```
+
+
+## Silhouette analysis
+```{r}
+silhouette_wine <- fviz_nbclust(wine_pca_data, kmeans, method = "silhouette")
+print(silhouette_wine)
+```
+
+
+## Apply K-means clustering
+```{r}
+set.seed(123)
+wine_kmeans <- kmeans(wine_pca_data, centers = 3)
+```
+
+
+## Add cluster assignments to PCA data
+```{r}
+wine_pca_data$cluster <- as.factor(wine_kmeans$cluster)
+```
+
+
+## Visualize clusters
+```{r}
+p1 <- ggplot(wine_pca_data, aes(x = PC1, y = PC2, color = cluster)) +
+  geom_point(size = 3) +
+  labs(title = "K-Means Clustering on Wine Dataset")
+print(p1)
+```
+
+
+## Interpret results
+```{r}
+cat("Wine Dataset Clustering Results:\n")
+cat("Cluster Sizes:", wine_kmeans$size, "\n")
+```
+
+
+## Breast Cancer Wisconsin Dataset
+## Load and normalize data
+```{r}
+bc_data <- read.csv(  paste0(
+    "https://archive.ics.uci.edu/ml/machine-learning-databases/",
+    "breast-cancer-wisconsin/wdbc.data"
+  ), header = FALSE)
+bc_features <- bc_data[, -c(1, 2)]  # Exclude ID and class columns
+bc_norm <- as.data.frame(lapply(bc_features, normalize))
+```
+
+
+## Apply PCA
+```{r}
+bc_pca <- prcomp(bc_norm, scale. = TRUE)
+summary(bc_pca)
+```
+
+
+## Reduce to top 2 principal components
+```{r}
+bc_pca_data <- as.data.frame(bc_pca$x[, 1:2])
+```
+
+
+## Determine optimal number of clusters (Elbow Method)
+```{r}
+elbow_bc <- fviz_nbclust(bc_pca_data, kmeans, method = "wss")
+print(elbow_bc)
+```
+
+
+## Silhouette analysis
+```{r}
+silhouette_bc <- fviz_nbclust(bc_pca_data, kmeans, method = "silhouette")
+print(silhouette_bc)
+```
+
+
+## Apply K-means clustering
+```{r}
+set.seed(123)
+bc_kmeans <- kmeans(bc_pca_data, centers = 2, nstart = 25)
+```
+
+
+## Add cluster assignments to PCA data
+```{r}
+bc_pca_data$cluster <- as.factor(bc_kmeans$cluster)
+```
+
+
+## Visualize clusters
+```{r}
+p2 <- ggplot(bc_pca_data, aes(x = PC1, y = PC2, color = cluster)) +
+  geom_point(size = 3) +
+  labs(title = "K-Means Clustering on Breast Cancer Dataset")
+print(p2)
+```
+
+
+## Interpret results
+```{r}
+cat("Breast Cancer Dataset Clustering Results:\n")
+cat("Cluster Sizes:", bc_kmeans$size, "\n")
+```
+
+\newpage
+\section*{
+  \centering Program - 9 \\[1em]
+  \hfill 28/10/25
+}
+# Time Series Analysis using ARIMA and Seasonal Decomposition
+## Load required libraries for time series analysis and modeling
+```{r}
+library(forecast)
+library(ggplot2)
+library(TSA)
+library(tseries)
+```
+## Function to perform Exploratory Data Analysis (EDA) on the time series data
+```{r}
+perform_eda <- function(ts_data, dataset_name) {
+  cat("Exploratory Data Analysis for", dataset_name, "\n")
+  print(summary(ts_data)) # Print summary of the dataset
+  plot(ts_data, main = paste(dataset_name, "Time Series"), 
+       ylab = "Values", xlab = "Time") # Plot the time series data
+  cat("ACF and PACF plots:\n")
+  acf(ts_data, main = paste("ACF of", dataset_name)) # Autocorrelation plot
+  pacf(ts_data, main = paste("PACF of", dataset_name)) # Partial autocorrelation plot
+}
+```
+
+## Function to decompose the time series into trend , seasonal, and residual components
+```{r}
+decompose_ts <- function(ts_data, dataset_name) {
+  cat("Decomposing the time series for", dataset_name, "\n")
+  decomposition <- decompose(ts_data) # Decompose the time series
+  plot(decomposition) # Plot the decomposition
+  return(decomposition) # Return the decomposition result
+}
+```
+
+## Function to fit an ARIMA model to the time series data
+```{r}
+fit_arima <- function(ts_data, dataset_name) {
+  cat("Fitting ARIMA model for", dataset_name, "\n")
+  adf_test <- adf.test(ts_data, alternative = "stationary") # ADF test for stationarity
+  cat("ADF Test p-value:", adf_test$p.value, "\n")
+  # If p-value > 0.05, data is non-stationary, so we difference the data
+  if (adf_test$p.value > 0.05) {
+    ts_data <- diff(ts_data) # Difference the data to make it stationary
+    plot(ts_data, main = paste(dataset_name, "Differenced Time Series"))
+  }
+  auto_model <- auto.arima(ts_data, seasonal = FALSE) # Fit ARIMA model (non-seasonal)
+  print(summary(auto_model)) # Print ARIMA model summary
+  forecast_result <- forecast(auto_model, h = 12) # Forecast next 12 periods
+  plot(forecast_result, main = paste(dataset_name, "ARIMA Forecast")) # Plot ARIMA forecast
+  return(auto_model) # Return the fitted ARIMA model
+}
+```
+
+## Function to fit a Seasonal ARIMA(SARIMA) model to the time series data
+```{r}
+fit_sarima <- function(ts_data, dataset_name) {
+  cat("Fitting SARIMA model for", dataset_name, "\n")
+  auto_sarima <- auto.arima(ts_data, seasonal = TRUE) # Fit SARIMA model (seasonal)
+  print(summary(auto_sarima)) # Print SARIMA model summary
+  sarima_forecast <- forecast(auto_sarima, h = 12) # Forecast next 12 periods
+  plot(sarima_forecast, main = paste(dataset_name, "SARIMA Forecast")) # Plot SARIMA forecast
+  return(auto_sarima) # Return the fitted SARIMA model
+}
+```
+
+## Function to compare ARIMA and SARIMA models by evaluating forecast accuracy
+```{r}
+compare_models <- function(arima_model, sarima_model, ts_data) {
+  cat("Comparing ARIMA and SARIMA models:\n")
+  h <- min(12, length(ts_data)) # Forecast horizon of 12 or adjusted based on dataset length
+  arima_forecast <- forecast(arima_model, h = h) # ARIMA forecast
+  sarima_forecast <- forecast(sarima_model, h = h) # SARIMA forecast
+  actual_values <- ts_data[(length(ts_data) - h + 1):length(ts_data)]
+  # Calculate accuracy of both models
+  arima_accuracy <- accuracy(arima_forecast$mean, actual_values)
+  sarima_accuracy <- accuracy(sarima_forecast$mean, actual_values)
+  cat("ARIMA Forecast Accuracy:\n", arima_accuracy, "\n") # Print ARIMA accuracy
+  cat("SARIMA Forecast Accuracy:\n", sarima_accuracy, "\n") # Print SARIMA accuracy
+}
+```
+
+## Function to visualize the comparison of ARIMA and SARIMAforecast performance
+```{r}
+plot_forecast_comparison <- function(actual_values, arima_forecast, sarima_forecast, time_points) {
+  arima_rmse <- sqrt(mean((arima_forecast - actual_values)^2)) # Calculate RMSE for ARIMA
+  sarima_rmse <- sqrt(mean((sarima_forecast - actual_values)^2)) # Calculate RMSE for SARIMA
+  # Color coding for better and worse RMSE
+  better_color <- ifelse(arima_rmse < sarima_rmse, "green", "red")
+  worse_color <- ifelse(arima_rmse < sarima_rmse, "red", "green")
+  # Plot actual values and forecasts
+  plot(time_points, actual_values, type = "o", col = "blue", pch = 16, lty = 1, 
+       xlab = "Time", ylab = "Values", main = "Forecast Comparison")
+  lines(time_points, arima_forecast, col = better_color, lty = 2, lwd = 2) # ARIMA forecast line
+  lines(time_points, sarima_forecast, col = worse_color, lty = 3, lwd = 2) # SARIMA forecast line
+  # Add a legend to the plot
+  legend("topright", 
+         legend = c("Actual Values", 
+                    paste("ARIMA (RMSE =", round(arima_rmse, 2), ")"), 
+                    paste("SARIMA (RMSE =", round(sarima_rmse, 2), ")")),
+         col = c("blue", better_color, worse_color), 
+         lty = c(1, 2, 3), lwd = c(1, 2, 2), pch = c(16, NA, NA))
+}
+```
+
+## AirPassengers Dataset Analysis
+```{r}
+data("AirPassengers")
+air_data <- AirPassengers
+cat("\n--- AirPassengers Dataset ---\n")
+# Perform Exploratory Data Analysis
+perform_eda(air_data, "AirPassengers")
+# Decompose the time series
+decompose_ts(air_data, "AirPassengers")
+# Fit ARIMA model
+arima_air <- fit_arima(air_data, "AirPassengers")
+# Fit SARIMA model
+sarima_air <- fit_sarima(air_data, "AirPassengers")
+# Compare ARIMA and SARIMA models
+compare_models(arima_air, sarima_air, air_data)
+```
+
+## Forecasting and plot comparison for AirPassengers dataset
+```{r}
+h_air <- 12 # Define forecast horizon for AirPassengers dataset (12 months ahead)
+```
+
+## Extract the actual values for the last 12 months of the AirPassengers data
+```{r}
+air_actual_values <- air_data[(length(air_data) - h_air + 1):length(air_data)]
+```
+
+## Generate ARIMA forecast for the next 12 months
+```{r}
+arima_air_forecast <- forecast(arima_air, h = h_air)$mean
+```
+
+## Generate SARIMA forecast for the next 12 months
+```{r}
+sarima_air_forecast <- forecast(sarima_air, h = h_air)$mean
+```
+
+## Extract the time points for the last 12 months
+```{r}
+time_points_air <- time(air_data)[(length(air_data) - h_air + 1):length(air_data)]
+```
+
+## Plot and compare the forecasts from ARIMA and SARIMA models against the actual values
+```{r}
+plot_forecast_comparison(air_actual_values, arima_air_forecast, 
+                         sarima_air_forecast, time_points_air)
+```
+
+## Monthly Milk Production Dataset Analysis
+```{r}
+data(milk) # Load the Monthly Milk Production dataset
+milk_data <- milk # Assign the dataset to a variable
+cat("\n--- Monthly Milk Production Dataset ---\n")
+```
+
+## Perform Exploratory Data Analysis (EDA) for the Milk Production dataset
+```{r}
+perform_eda(milk_data, "Monthly Milk Production")
+```
+
+## Decompose the Milk Production time series into trend, seasonal, and residual components
+```{r}
+decompose_ts(milk_data, "Monthly Milk Production")
+```
+
+## Fit ARIMA model for the Milk Production dataset
+```{r}
+arima_milk <- fit_arima(milk_data, "Monthly Milk Production")
+```
+
+## Fit SARIMA model for the Milk Production dataset
+```{r}
+sarima_milk <- fit_sarima(milk_data, "Monthly Milk Production")
+```
+
+## Compare ARIMA and SARIMA models based on their forecast accuracy
+```{r}
+compare_models(arima_milk, sarima_milk, milk_data)
+```
+
+## Forecasting and plot comparison for Milk Production dataset
+```{r}
+h_milk <- 12 # Define forecast horizon for Milk Production dataset (12 months ahead)
+```
+
+## Extract the actual values for the last 12 months of the Milk Production data
+```{r}
+milk_actual_values <- milk_data[(length(milk_data) - h_milk + 1):length(milk_data)]
+```
+
+## Generate ARIMA forecast for the next 12 months
+```{r}
+arima_milk_forecast <- forecast(arima_milk, h = h_milk)$mean
+```
+
+## Generate SARIMA forecast for the next 12 months
+```{r}
+sarima_milk_forecast <- forecast(sarima_milk, h = h_milk)$mean
+```
+
+## Extract the time points for the last 12 months
+```{r}
+time_points_milk <- time(milk_data)[(length(milk_data) - h_milk + 1):length(milk_data)]
+```
+
+## Plot and compare the forecasts from ARIMA and SARIMA models against the actual values
+```{r}
+plot_forecast_comparison(milk_actual_values, arima_milk_forecast, 
+                         sarima_milk_forecast, time_points_milk)
+```
+
+\newpage
+\section*{
+  \centering Program - 10 \\[1em]
+  \hfill 29/10/25
+}
+# Interactive Visualization with plotly and Dynamic Reports with RMarkdown
+
+```{r}
+# Load necessary libraries
+library(plotly)
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(DT)
+library(flexdashboard) 
+```
+## Load Gapminder dataset
+```{r}
+data("gapminder")
+```
+
+## Scatter plot with plotly
+###Scatter Plot the dataset
+
+```{r}
+# Scatter plot of GDP vs Life Expectancy by Continent
+scatter_plot <- ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10() +  # Log scale for better visualization
+  labs(title = "GDP vs Life Expectancy by Continent",
+       x = "GDP per Capita (Log Scale)",
+       y = "Life Expectancy") +
+  theme_minimal()
+
+scatter_plot
+
+```
+
+## Bar chart with plotly
+```{r}
+# Filter for year 2007 and create a bar chart of life expectancy by country
+bar_chart <- gapminder %>%
+  filter(year == 2007) %>%
+  arrange(desc(lifeExp)) %>%
+  ggplot(aes(x = reorder(country, lifeExp), y = lifeExp, fill = continent)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +  # Flip for better readability
+  labs(title = "Life Expectancy by Country in 2007",
+       x = "Country",
+       y = "Life Expectancy") +
+  theme_minimal()
+
+bar_chart
+
+```
+
+## Line chart with plotly
+```{r}
+# Filter data for Asia and create a line chart showing life expectancy trends over time
+line_chart <- gapminder %>%
+  filter(continent == "Asia") %>%
+  ggplot(aes(x = year, y = lifeExp, color = country, group = country)) +
+  geom_line() +
+  labs(title = "Life Expectancy Trend in Asia",
+       x = "Year",
+       y = "Life Expectancy") +
+  theme_minimal()
+
+line_chart
+```
+
+## Combine the Plots
+```{r}
+# Combine the scatter, bar, and line charts into one interactive layout
+dashboard <- subplot(scatter_plot, bar_chart, line_chart, nrows = 1) %>%
+  layout(title = 'Gapminder Data Visualization')
+
+# Display the dashboard
+```
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("newplot.png")
+```
+```{r covid_analysis, echo = TRUE, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 5}
+# Libraries
+library(readr)
+library(dplyr)
+library(plotly)
+library(DT)
+
+# Load COVID-19 data
+covid_url  <- "https://github.com/owid/covid-19-data/raw/master/public/data/owid-covid-data.csv"
+covid_data <- read_csv(covid_url, show_col_types = FALSE)
+
+# Select countries + clean data
+covid_sel <- covid_data %>%
+  filter(location %in% c("India", "United States", "Brazil")) %>%
+  select(location, date, new_cases_smoothed_per_million) %>%
+  mutate(date = as.Date(date)) %>%
+  filter(!is.na(new_cases_smoothed_per_million))
+
+# Plot COVID-19 new cases
+covid_plot <- covid_sel %>%
+  plot_ly(
+    x        = ~date,
+    y        = ~new_cases_smoothed_per_million,
+    color    = ~location,
+    type     = "scatter",
+    mode     = "lines",
+    hoverinfo = "text",
+    text     = ~paste(
+      "Country:", location,
+      "<br>Date:", date,
+      "<br>New Cases / million:", round(new_cases_smoothed_per_million, 1)
+    )
+  ) %>%
+  layout(
+    title  = "COVID-19 New Cases (Smoothed per Million)",
+    xaxis  = list(title = "Date"),
+    yaxis  = list(title = "New Cases (per million)")
+  )
+
+covid_plot   # shows the interactive plot just above the table
+
+# Summary table (right below the plot)
+covid_summary <- covid_sel %>%
+  group_by(location) %>%
+  summarise(
+    start_date                = min(date),
+    end_date                  = max(date),
+    avg_new_cases_per_million = round(mean(new_cases_smoothed_per_million), 1),
+    max_new_cases_per_million = round(max(new_cases_smoothed_per_million), 1),
+    .groups = "drop"
+  )
+
+datatable(
+  covid_summary,
+  options = list(pageLength = 3, autoWidth = TRUE),
+  caption = "Summary of COVID-19 New Cases (Smoothed per Million)"
+)
+```
+
+\newpage
+\thispagestyle{empty}
+
+\vspace*{\fill}
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{"logo.png"}\\
+    {\large \textbf{B.M.S. College of Engineering}}\\
+    {\small \textbf{Dept. of CSE (Data Science)}}\\
+    {\small Basavanagudi, Bangalore-19}
+\end{center}
+
